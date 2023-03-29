@@ -198,7 +198,7 @@ pub struct DirectoryEntry {
     pub name: NulStr,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TypeIndicator {
     Unknown,
     Regular,
