@@ -1,4 +1,4 @@
-Ella: I have implemented cd and cat, on top of including the type in directory listing in read_dir_inode()
+Ella: I have implemented cd and cat, on top of type-checking in directory listing in read_dir_inode()
 
 This is a starting point for parsing and navigating ext2 file systems.
 `cargo run` will start a session that looks like a shell. All you can
