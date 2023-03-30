@@ -110,15 +110,15 @@ impl Ext2 {
         &inode_table[index]
     }
 
-    // includes type in directory listing
+    // includes type in directory listing: TypeIndicator
     pub fn read_dir_inode(
         &self,
         inode: usize,
     ) -> std::io::Result<Vec<(usize, &NulStr, TypeIndicator)>> {
-        let mut ret = Vec::new();
-        let root = self.get_inode(inode);
-        // println!("in read_dir_inode, #{} : {:?}", inode, root);
-        // println!("following direct pointer to data block: {}", root.direct_pointer[0]);
+        let mut ret = Vec::new(); //includes types of things inside Vec
+        let root = self.get_inode(inode); // root is of type &Inode
+                                          // println!("in read_dir_inode, #{} : {:?}", inode, root);
+                                          // println!("following direct pointer to data block: {}", root.direct_pointer[0]);
         let entry_ptr = self.blocks[root.direct_pointer[0] as usize - self.block_offset].as_ptr();
         let mut byte_offset: isize = 0;
         while byte_offset < root.size_low as isize {
@@ -201,7 +201,7 @@ fn main() -> Result<()> {
                             println!("{} is not a directory", to_dir);
                         }
                     } else {
-                        // if not find it
+                        // if cannot find it
                         println!("unable to locate {}, cwd unchanged", to_dir);
                     }
                 }
